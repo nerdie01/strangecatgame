@@ -3,6 +3,8 @@ using System;
 
 public partial class joints : Node2D
 {
+	[Export] public float stabilizationForce = 100f;
+	[Export] public float spinnyLegSpeed = 100f;
 	private RigidBody2D bodyReference;
 	private RigidBody2D[] bodyParts = new RigidBody2D[3];
 	private PinJoint2D[] pinJoints = new PinJoint2D[3];
@@ -10,19 +12,29 @@ public partial class joints : Node2D
 	public override void _Ready()
 	{
 		bodyReference = GetNode("../body") as RigidBody2D;
-		bodyParts[0] = GetNode("../meower") as RigidBody2D;
-		bodyParts[1] = GetNode("../leg") as RigidBody2D;
-		bodyParts[2] = GetNode("../leg2") as RigidBody2D;
-		pinJoints[0] = GetNode("meowerbody") as PinJoint2D;
-		pinJoints[1] = GetNode("bodyleg1") as PinJoint2D;
-		pinJoints[2] = GetNode("bodyleg2") as PinJoint2D;
+		bodyParts[0] = GetNode("../head") as RigidBody2D;
+		bodyParts[1] = GetNode("../leg_1") as RigidBody2D;
+		bodyParts[2] = GetNode("../leg_2") as RigidBody2D;
+		pinJoints[0] = GetNode("joint_head") as PinJoint2D;
+		pinJoints[1] = GetNode("joint_leg_1") as PinJoint2D;
+		pinJoints[2] = GetNode("joint_leg_2") as PinJoint2D;
 	}
 
     public override void _PhysicsProcess(double delta)
     {
-		for (int i = 0; i < bodyParts.Length; i++) {
-			// GD.Print(i, bodyParts[i].Rotation * 1000f);
-			pinJoints[i].MotorTargetVelocity = bodyParts[i].Rotation * 1000f;
+		pinJoints[0].MotorTargetVelocity = -bodyParts[0].Rotation * stabilizationForce;
+		
+		if (Input.IsActionPressed("right")) {
+			pinJoints[1].MotorTargetVelocity = spinnyLegSpeed;
+			pinJoints[2].MotorTargetVelocity = spinnyLegSpeed;
+		}
+		else if (Input.IsActionPressed("left")) {
+			pinJoints[1].MotorTargetVelocity = -spinnyLegSpeed;
+			pinJoints[2].MotorTargetVelocity = -spinnyLegSpeed;
+		}
+		else {
+			pinJoints[1].MotorTargetVelocity = -bodyParts[1].Rotation * stabilizationForce;
+			pinJoints[2].MotorTargetVelocity = -bodyParts[2].Rotation * stabilizationForce;
 		}
     }
 }
