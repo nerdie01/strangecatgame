@@ -3,7 +3,7 @@ using System;
 
 public partial class catnip : RigidBody2D
 {
-	[Export] public Texture2D highCatTexture;
+	[Export] public string blazedCatHeadPath = "res://assets/car_head_BLAZED.png";
 	[Export] public float highModifier = 2f;
 	public bool IsHigh {get; set;}
 	private joints cat;
@@ -22,6 +22,11 @@ public partial class catnip : RigidBody2D
 			cat.jointStabilizationForce = 0f;
 			cat.forceStrength *= highModifier;
 			cat.groundRaycast.TargetPosition = new Vector2(0, cat.groundRaycast.TargetPosition.Y * 2f);
+
+			CompressedTexture2D blazedCatHead = ResourceLoader.Load<CompressedTexture2D>(blazedCatHeadPath);
+
+			Sprite2D headSprite = GetNode("CarHead") as Sprite2D;
+			headSprite.Texture = blazedCatHead;
 		}
 	}
 }
