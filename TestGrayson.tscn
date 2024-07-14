@@ -1,23 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqpe4xmf1cd6b"]
+[gd_scene load_steps=5 format=3 uid="uid://cqpe4xmf1cd6b"]
 
 [ext_resource type="PackedScene" uid="uid://duq0fhf5b518c" path="res://cat.tscn" id="1_h3sbp"]
 [ext_resource type="Texture2D" uid="uid://cxm35opw8fwls" path="res://assets/cheesed.jpg" id="2_ym8wo"]
+[ext_resource type="PackedScene" uid="uid://c4vgxnsj1h4n7" path="res://Obstacles/stove_top.tscn" id="3_j10q5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2ke5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5lof5"]
 size = Vector2(656, 192)
 
 [node name="TestGrayson" type="Node2D"]
 
-[node name="Cheesed" type="Sprite2D" parent="."]
-position = Vector2(0, 208)
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 232)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_5lof5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
 texture = ExtResource("2_ym8wo")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Cheesed"]
+[node name="Cat" parent="." instance=ExtResource("1_h3sbp")]
+position = Vector2(-176, 24)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cheesed/StaticBody2D"]
-shape = SubResource("RectangleShape2D_h2ke5")
-
-[node name="Node2D" parent="." instance=ExtResource("1_h3sbp")]
-position = Vector2(-192, -8)
-
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="StoveTop" parent="." instance=ExtResource("3_j10q5")]
+position = Vector2(232, 64)
+groupToHit = "Cat"

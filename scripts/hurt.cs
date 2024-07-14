@@ -3,8 +3,19 @@ using System;
 
 public partial class hurt : Area2D
 {
-	private void _on_body_entered(Node2D body)
+	[Export] public string groupToHit;
+
+    public override void _Ready()
+    {
+        GetNode<Area2D>("StoveTop").Connect("body_entered",new Callable(this, "ReactionToBody"));
+    }
+
+    public void ReactionToBody(RigidBody2D rb)
 	{
-		//if(body.GetNode<Skeleton2D>)
+		GD.Print("TestTest");
+		if(rb.GetParent().IsInGroup(groupToHit))
+		{
+			
+		}
 	}
 }

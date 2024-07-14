@@ -3,7 +3,7 @@ using System;
 
 public partial class CatManager : Node
 {
-	public int health = 3;
+	[Export] public int health = 3;
 
 	public override void _Process(double delta)
 	{
@@ -12,4 +12,11 @@ public partial class CatManager : Node
 			GetTree().ReloadCurrentScene();
 		}
 	}
+
+	public override void _UnhandledInput(InputEvent @event)
+{
+    if (@event is InputEventKey eventKey)
+        if (eventKey.Pressed && eventKey.Keycode == Key.E)
+            health--;
+}
 }
