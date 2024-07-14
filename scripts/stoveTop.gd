@@ -1,17 +1,9 @@
 extends Area2D
-#@export var hp = 5
+
+@export var forceMag = 10000
+
 func _on_body_entered(body):
-	#
+	#SFX & Particles
 	body.get_parent().health -= 1
+	body.apply_central_impulse(Vector2(body.linear_velocity.x * -1 * forceMag, body.linear_velocity.y * -1 * forceMag))
 	print(body.get_parent().health)
-	#hp -= 1
-	#wait(5)
-	#print(hp)
-	
-#func _process(delta):
-	
-	#if(hp <= 0):
-		#hp = 5
-		#get_tree().reload_current_scene()
-#func wait(seconds: float) -> void:
-  #await get_tree().create_timer(seconds).timeout		
