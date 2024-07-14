@@ -41,3 +41,6 @@ script = ExtResource("7_qj4s1")
 position = Vector2(303, -265)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_mi8yb")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
