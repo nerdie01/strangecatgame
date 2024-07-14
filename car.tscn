@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dq3xd3ome0vne"]
 
-[ext_resource type="Script" path="res://stabilizecat.cs" id="1_h2fpu"]
+[ext_resource type="Script" path="res://scripts/stabilizecat.cs" id="1_h2fpu"]
 [ext_resource type="Texture2D" uid="uid://dk3lc0v247jwt" path="res://assets/body.png" id="1_nqp22"]
 [ext_resource type="Texture2D" uid="uid://b4r83ajc134e8" path="res://assets/head.png" id="2_377sw"]
 [ext_resource type="Texture2D" uid="uid://baqpq08uxb6oi" path="res://assets/leg.png" id="3_w0cil"]
-[ext_resource type="Script" path="res://joints.cs" id="4_xp8pl"]
+[ext_resource type="Script" path="res://scripts/joints.cs" id="4_xp8pl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k0abo"]
 radius = 70.0286

@@ -1,13 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://c4vgxnsj1h4n7"]
 
-[ext_resource type="Script" path="res://scripts/hurt.cs" id="1_78m5c"]
 [ext_resource type="Texture2D" uid="uid://cjccf7sowbq0i" path="res://icon.svg" id="1_m32uw"]
+[ext_resource type="Script" path="res://scripts/stoveTop.gd" id="1_vfpxf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pm8ke"]
 radius = 72.0
 
 [node name="StoveTop" type="Area2D"]
-script = ExtResource("1_78m5c")
+collision_mask = 2
+script = ExtResource("1_vfpxf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_m32uw")

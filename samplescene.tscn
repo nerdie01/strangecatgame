@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cxm35opw8fwls" path="res://assets/cheesed.jpg" id="2_braip"]
 [ext_resource type="PackedScene" uid="uid://duq0fhf5b518c" path="res://cat.tscn" id="2_twcor"]
-[ext_resource type="Script" path="res://camera_follow.cs" id="2_wyv7e"]
+[ext_resource type="Script" path="res://scripts/camera_follow.cs" id="2_wyv7e"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ejrh7"]
 rough = true
