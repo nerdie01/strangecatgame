@@ -36,6 +36,7 @@ collision_layer = 2
 mass = 0.5
 
 [node name="CarBody" type="Sprite2D" parent="body"]
+texture_filter = 1
 texture = ExtResource("1_e4yqh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
@@ -43,6 +44,7 @@ position = Vector2(-2, -6.5)
 shape = SubResource("RectangleShape2D_8lsl6")
 
 [node name="CarTail" type="Sprite2D" parent="body"]
+texture_filter = 1
 position = Vector2(-126, -41)
 texture = ExtResource("2_68rvb")
 
@@ -54,6 +56,7 @@ target_position = Vector2(0, 144)
 physics_material_override = SubResource("PhysicsMaterial_phx38")
 
 [node name="CarFront" type="Sprite2D" parent="leg_1"]
+texture_filter = 1
 position = Vector2(90, 53)
 texture = ExtResource("2_e7tua")
 
@@ -65,6 +68,7 @@ shape = SubResource("CapsuleShape2D_01tqt")
 physics_material_override = SubResource("PhysicsMaterial_phx38")
 
 [node name="CarBack" type="Sprite2D" parent="leg_2"]
+texture_filter = 1
 position = Vector2(-85, 58)
 texture = ExtResource("3_6x8oa")
 
@@ -80,7 +84,8 @@ script = ExtResource("6_0amh2")
 highModifier = 4.0
 
 [node name="CarHead" type="Sprite2D" parent="head"]
-position = Vector2(82, -77)
+texture_filter = 1
+position = Vector2(83, -77)
 texture = ExtResource("4_qdm10")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="head"]

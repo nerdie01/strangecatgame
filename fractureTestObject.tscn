@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://voua6r6bj2jy"]
+
+[ext_resource type="Script" path="res://fracture.cs" id="1_keybc"]
+[ext_resource type="Texture2D" uid="uid://cr4674rqgpv5m" path="res://assets/fracturables/cube/cube_fracturable_1.bmp" id="2_kgn3o"]
+[ext_resource type="Texture2D" uid="uid://cdo6ts1vgrxwf" path="res://assets/fracturables/cube/cube_fracturable_2.bmp" id="3_shvgm"]
+[ext_resource type="Texture2D" uid="uid://ccv857ssvllb" path="res://assets/fracturables/cube/cube_fracturable_3.bmp" id="4_t0b5w"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_keybc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CubeFracturable1" type="Sprite2D" parent="StaticBody2D"]
+texture_filter = 1
+texture = ExtResource("2_kgn3o")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(149, 149, 47.3, 149, 54.5, 126.3, 8, 61.6, 8, 58.7, 37.4, -32.6, -86, -106.9, -86, -108, -112.7, -128, -114.6, -128, -142, -144.9, -142, -149, 149, -149)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CubeFracturable2" type="Sprite2D" parent="StaticBody2D2"]
+texture_filter = 1
+texture = ExtResource("3_shvgm")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(-110, -124.1, -110, -122, -88.3, -106, -86.4, -106, 36.3, -30.9, 35.5, -28, 34.4, -28, 5.39999, 59, 2.39999, 59, -28.6, 71, -32.9, 71, -149, 99.6, -149, -145.2, -147, -146.3)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CubeFracturable3" type="Sprite2D" parent="StaticBody2D3"]
+texture_filter = 1
+texture = ExtResource("4_t0b5w")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D3"]
+polygon = PackedVector2Array(9, 63.6, 9, 66.5, 38, 108, 38.9, 108, 53, 124.3, 53, 128.4, 44.3, 149, -149, 149, -149, 101, -145.1, 101, -31, 73.5, -31, 72.5, 0, 62.5, 0, 60)

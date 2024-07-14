@@ -28,5 +28,10 @@ public partial class catnip : RigidBody2D
 			Sprite2D headSprite = GetNode("CarHead") as Sprite2D;
 			headSprite.Texture = blazedCatHead;
 		}
+
+		if (body.GetParent().Name.ToString().Contains("Fracture")) {
+			fracture f = GetNode(body.GetParent().GetPath()) as fracture;
+			f.BreakObject();
+		}
 	}
 }
