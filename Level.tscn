@@ -125,6 +125,7 @@ polygon = PackedVector2Array(-1128, -111.333, -577.333, -113.333, -575.333, -77.
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="CollisionHolder"]
 position = Vector2(-539.167, -398)
 shape = SubResource("RectangleShape2D_ps1k3")
+disabled = true
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="CollisionHolder"]
 position = Vector2(-303, 64.3333)
