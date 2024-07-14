@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://blqe7du2t3de7"]
+[gd_scene load_steps=28 format=3 uid="uid://blqe7du2t3de7"]
 
 [ext_resource type="Texture2D" uid="uid://djhwxfaotgwsa" path="res://BGAssets/Stove1.png" id="1_20vnn"]
 [ext_resource type="Texture2D" uid="uid://dkbgorj226oxj" path="res://BGAssets/Drawer1.png" id="1_hs6pk"]
@@ -24,6 +24,24 @@ size = Vector2(396.667, 324.667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hawc1"]
 size = Vector2(175.333, 216.667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghxid"]
+size = Vector2(398, 318.667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1226"]
+size = Vector2(174.667, 716.667)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_14rtf"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hfwe"]
+size = Vector2(453.333, 42.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5v2b"]
+size = Vector2(180.667, 36.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anm7u"]
+size = Vector2(138, 31.3333)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pd5ap"]
 animations = [{
@@ -116,6 +134,36 @@ shape = SubResource("RectangleShape2D_ecdv5")
 position = Vector2(-1, 117.667)
 shape = SubResource("RectangleShape2D_hawc1")
 
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="CollisionHolder"]
+position = Vector2(310.333, 74.6667)
+shape = SubResource("RectangleShape2D_ghxid")
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="CollisionHolder"]
+polygon = PackedVector2Array(946, -109.333, 1603.33, -101.333, 1607.33, -54.6667, 1567.33, -49.3333, 1566, 228, 976.667, 224, 984.667, -62.6667, 944.667, -62.6667)
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="CollisionHolder"]
+position = Vector2(2786.67, -116.333)
+shape = SubResource("RectangleShape2D_i1226")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="CollisionHolder"]
+physics_material_override = SubResource("PhysicsMaterial_14rtf")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="CollisionHolder/StaticBody2D"]
+position = Vector2(111.333, -38)
+polygon = PackedVector2Array(448, -91.3333, 484.667, -91.3333, 497.333, -67.3333, 496, -43.3333, 506, -6.66667, 522.667, 7.33334, 545.333, 13.3333, 574, 20, 602, 24.6667, 633.333, 18.6667, 660, 9.33334, 674, -5.33334, 684, -29.3333, 689.333, -57.3333, 699.333, -84, 714.667, -94, 739.333, -90, 750, -71.3333, 743.333, -57.3333, 732, -48.6667, 723.333, -23.3333, 709.333, 10.6667, 688, 31.3333, 670, 46, 634.667, 54, 603.333, 52.6667, 578, 52.6667, 546.667, 50, 521.333, 42.6667, 493.333, 38.6667, 474.667, 16, 459.333, -13.3333, 456.667, -42, 435.333, -60)
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="CollisionHolder"]
+position = Vector2(1881.33, 44.6667)
+shape = SubResource("RectangleShape2D_4hfwe")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="CollisionHolder"]
+position = Vector2(2396.33, -32.3333)
+shape = SubResource("RectangleShape2D_m5v2b")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="CollisionHolder"]
+position = Vector2(2636, -243.333)
+shape = SubResource("RectangleShape2D_anm7u")
+
 [node name="Environment" type="Node" parent="."]
 
 [node name="StoveArea" type="AnimatedSprite2D" parent="Environment"]
@@ -158,7 +206,7 @@ position = Vector2(-788, 310)
 
 [node name="catnip" type="RigidBody2D" parent="."]
 z_index = 4
-position = Vector2(4702, -29)
+position = Vector2(5046, -316)
 mass = 0.1
 max_contacts_reported = 2
 contact_monitor = true
@@ -173,7 +221,7 @@ shape = SubResource("RectangleShape2D_wm077")
 z_index = 4
 position = Vector2(-268, -7)
 zoom = Vector2(0.61, 0.61)
-limit_left = -100000000
 limit_top = -520
+limit_right = 5144
 limit_bottom = -100
 script = ExtResource("4_gdotr")
