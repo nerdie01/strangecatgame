@@ -1,24 +1,66 @@
-[gd_scene load_steps=11 format=3 uid="uid://blqe7du2t3de7"]
+[gd_scene load_steps=22 format=3 uid="uid://blqe7du2t3de7"]
 
-[ext_resource type="Texture2D" uid="uid://dkbgorj226oxj" path="res://assets/Drawer1.png" id="1_hs6pk"]
-[ext_resource type="Texture2D" uid="uid://bsk1e7oqx1q5o" path="res://assets/Stove2.png" id="2_4j3c5"]
-[ext_resource type="Texture2D" uid="uid://c8rcp0ct1s7wd" path="res://assets/Drawer2.png" id="2_8q1u7"]
+[ext_resource type="Texture2D" uid="uid://djhwxfaotgwsa" path="res://BGAssets/Stove1.png" id="1_20vnn"]
+[ext_resource type="Texture2D" uid="uid://dkbgorj226oxj" path="res://BGAssets/Drawer1.png" id="1_hs6pk"]
+[ext_resource type="Texture2D" uid="uid://c8rcp0ct1s7wd" path="res://BGAssets/Drawer2.png" id="2_8q1u7"]
+[ext_resource type="Texture2D" uid="uid://c6p0jfr3bicak" path="res://BGAssets/Stove2.png" id="2_84mom"]
 [ext_resource type="Script" path="res://scripts/BGIdle.gd" id="3_4u5q3"]
 [ext_resource type="PackedScene" uid="uid://duq0fhf5b518c" path="res://cat.tscn" id="3_e3a6d"]
+[ext_resource type="Texture2D" uid="uid://hwwdtnu76eku" path="res://BGAssets/Dresser1.png" id="4_dvkoq"]
 [ext_resource type="Script" path="res://scripts/camera_follow.cs" id="4_gdotr"]
-[ext_resource type="Texture2D" uid="uid://b4dhub4aylfqs" path="res://assets/Stove1.png" id="5_uqbvg"]
+[ext_resource type="Texture2D" uid="uid://b7reg4mtcdfb4" path="res://BGAssets/Dresser2.png" id="5_epyw3"]
+[ext_resource type="Texture2D" uid="uid://cwcptphqdlmc1" path="res://BGAssets/News1.png" id="6_1vmmy"]
+[ext_resource type="Texture2D" uid="uid://hi5utw4w8r00" path="res://BGAssets/News2.png" id="7_0y32q"]
+[ext_resource type="Texture2D" uid="uid://cjccf7sowbq0i" path="res://icon.svg" id="11_wljpg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrfby"]
-size = Vector2(2165.33, 49.3333)
+size = Vector2(4346, 49.3333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ps1k3"]
+size = Vector2(973, 228.667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecdv5"]
+size = Vector2(396.667, 324.667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hawc1"]
+size = Vector2(175.333, 216.667)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pd5ap"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_uqbvg")
+"texture": ExtResource("1_20vnn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_4j3c5")
+"texture": ExtResource("2_84mom")
+}],
+"loop": true,
+"name": &"BGIdle",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_erwya"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dvkoq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_epyw3")
+}],
+"loop": true,
+"name": &"BGIdle",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a3e0t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_1vmmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0y32q")
 }],
 "loop": true,
 "name": &"BGIdle",
@@ -39,16 +81,40 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wm077"]
+size = Vector2(128, 128)
+
 [node name="Level" type="Node2D"]
 
 [node name="CollisionHolder" type="StaticBody2D" parent="."]
+z_index = 4
 position = Vector2(1094, 149)
 scale = Vector2(1.5, 1.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionHolder"]
 z_index = 5
-position = Vector2(-538.667, 236.667)
+position = Vector2(551.667, 236.667)
 shape = SubResource("RectangleShape2D_xrfby")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CollisionHolder"]
+z_index = 5
+position = Vector2(552, -483.333)
+shape = SubResource("RectangleShape2D_xrfby")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionHolder"]
+polygon = PackedVector2Array(-1128, -111.333, -577.333, -113.333, -575.333, -77.3333, -609.333, -82.6667, -605.333, 214.667, -1107.33, 213.333, -1101.33, -79.3333, -1133.33, -84.6667)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="CollisionHolder"]
+position = Vector2(-539.167, -398)
+shape = SubResource("RectangleShape2D_ps1k3")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="CollisionHolder"]
+position = Vector2(-303, 64.3333)
+shape = SubResource("RectangleShape2D_ecdv5")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="CollisionHolder"]
+position = Vector2(-1, 117.667)
+shape = SubResource("RectangleShape2D_hawc1")
 
 [node name="Environment" type="Node" parent="."]
 
@@ -58,8 +124,23 @@ position = Vector2(1094, 0)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_pd5ap")
 animation = &"BGIdle"
-frame = 1
 frame_progress = 1.0
+script = ExtResource("3_4u5q3")
+
+[node name="Sink" type="AnimatedSprite2D" parent="Environment"]
+texture_filter = 1
+position = Vector2(2714, 0)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_erwya")
+animation = &"BGIdle"
+script = ExtResource("3_4u5q3")
+
+[node name="News" type="AnimatedSprite2D" parent="Environment"]
+texture_filter = 1
+position = Vector2(4334, 0)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_a3e0t")
+animation = &"BGIdle"
 script = ExtResource("3_4u5q3")
 
 [node name="Beginning" type="AnimatedSprite2D" parent="Environment"]
@@ -75,8 +156,24 @@ z_index = 10
 texture_filter = 1
 position = Vector2(-788, 310)
 
+[node name="catnip" type="RigidBody2D" parent="."]
+z_index = 4
+position = Vector2(4702, -29)
+mass = 0.1
+max_contacts_reported = 2
+contact_monitor = true
+
+[node name="Icon" type="Sprite2D" parent="catnip"]
+texture = ExtResource("11_wljpg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="catnip"]
+shape = SubResource("RectangleShape2D_wm077")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 4
 position = Vector2(-268, -7)
 zoom = Vector2(0.61, 0.61)
+limit_left = -100000000
+limit_top = -520
+limit_bottom = -100
 script = ExtResource("4_gdotr")

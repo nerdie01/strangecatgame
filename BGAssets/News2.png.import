@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8rcp0ct1s7wd"
-path="res://.godot/imported/Drawer2.png-3a26537a4c2b105ea12e25787fc79a74.ctex"
+uid="uid://hi5utw4w8r00"
+path="res://.godot/imported/News2.png-d6883419e08c99d24d060660516eeb86.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Drawer2.png"
-dest_files=["res://.godot/imported/Drawer2.png-3a26537a4c2b105ea12e25787fc79a74.ctex"]
+source_file="res://BGAssets/News2.png"
+dest_files=["res://.godot/imported/News2.png-d6883419e08c99d24d060660516eeb86.ctex"]
 
 [params]
 

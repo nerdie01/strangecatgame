@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4dhub4aylfqs"
-path="res://.godot/imported/Stove1.png-1b04c10ee6f8d9239dd166c9c146f2af.ctex"
+uid="uid://djhwxfaotgwsa"
+path="res://.godot/imported/Stove1.png-7d885134a97cb19e43ce11c3851d868c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Stove1.png"
-dest_files=["res://.godot/imported/Stove1.png-1b04c10ee6f8d9239dd166c9c146f2af.ctex"]
+source_file="res://BGAssets/Stove1.png"
+dest_files=["res://.godot/imported/Stove1.png-7d885134a97cb19e43ce11c3851d868c.ctex"]
 
 [params]
 
