@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cxm35opw8fwls" path="res://assets/cheesed.jpg" id="2_braip"]
 [ext_resource type="PackedScene" uid="uid://duq0fhf5b518c" path="res://cat.tscn" id="2_twcor"]
 [ext_resource type="Script" path="res://scripts/camera_follow.cs" id="2_wyv7e"]
-[ext_resource type="PackedScene" path="res://fractureTestObject.tscn" id="5_awld1"]
+[ext_resource type="PackedScene" uid="uid://voua6r6bj2jy" path="res://fractureTestObject.tscn" id="5_awld1"]
 [ext_resource type="Texture2D" uid="uid://cjccf7sowbq0i" path="res://icon.svg" id="5_ipy4j"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ejrh7"]
