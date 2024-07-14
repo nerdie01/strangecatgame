@@ -10,7 +10,7 @@ public partial class joints : Node2D
 	[Export] public float stabilizationForce = 2000f;
 	[Export] public float jointStabilizationForce = 200f;
 	[Export] public float legSpeed = 50f;
-	[Export] public float jumpHeight = 150000f;
+	[Export] public float jumpHeight = 200000f;
 	public RayCast2D groundRaycast;
 	private RigidBody2D bodyReference;
 	private RigidBody2D[] bodyParts = new RigidBody2D[3];
@@ -28,8 +28,8 @@ public partial class joints : Node2D
 		pinJoints[2] = GetNode("joint_leg_2") as PinJoint2D;
 	}
 
-    public override void _PhysicsProcess(double delta)
-    {
+	public override void _PhysicsProcess(double delta)
+	{
 		float rotationForStabilization =  bodyReference.Rotation < 0 ? bodyReference.Rotation : -bodyReference.Rotation;
 		bodyReference.ApplyTorque(rotationForStabilization * stabilizationForce);
 
@@ -53,5 +53,5 @@ public partial class joints : Node2D
 		if(Input.IsActionJustPressed("jump") && groundRaycast.IsColliding()) {
 			bodyReference.ApplyForce(new Vector2(0, -jumpHeight));
 		}
-    }
+	}
 }
