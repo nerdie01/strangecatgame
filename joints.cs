@@ -14,7 +14,7 @@ public partial class joints : Node2D
 	private RigidBody2D bodyReference;
 	private RigidBody2D[] bodyParts = new RigidBody2D[3];
 	private PinJoint2D[] pinJoints = new PinJoint2D[3];
-	private CollisionShape2D[] legCollider = new CollisionShape2D[2];
+	private PhysicsRayQueryParameters2D query;
 
 	public override void _Ready()
 	{
@@ -25,12 +25,13 @@ public partial class joints : Node2D
 		pinJoints[0] = GetNode("joint_head") as PinJoint2D;
 		pinJoints[1] = GetNode("joint_leg_1") as PinJoint2D;
 		pinJoints[2] = GetNode("joint_leg_2") as PinJoint2D;
-		legCollider[0] = GetNode("../leg_1/Leg1Collider") as CollisionShape2D;
-		legCollider[1] = GetNode("../leg_2/Leg2Collider") as CollisionShape2D;
 	}
 
     public override void _PhysicsProcess(double delta)
     {
+		PhysicsDirectSpaceState2D spaceState = GetWorld2D().DirectSpaceState;
+		query = PhysicsRayQueryParameters2D.Create(bodyReference.Position, bodyReference.Position - new Vector2(0, 100));
+
 		float rotationForStabilization =  bodyReference.Rotation < 0 ? bodyReference.Rotation + 2*MathF.PI : bodyReference.Rotation;
 		bodyReference.ApplyTorque(rotationForStabilization * stabilizationForce);
 
@@ -52,12 +53,7 @@ public partial class joints : Node2D
 		}
 
 		if(Input.IsActionJustPressed("jump")) {
-			PhysicsDirectSpaceState2D spaceState = GetWorld2D().DirectSpaceState;
-			PhysicsRayQueryParameters2D query = PhysicsRayQueryParameters2D.Create(bodyReference.Position, bodyReference.Position - new Vector2(0, 100));
-			bool result = spaceState.IntersectRay(query).Count == 0;
-			GD.Print(result, spaceState.IntersectRay(query));
-
-			if (!result) { bodyReference.ApplyForce(new Vector2(0, -jumpHeight)); }
+			if (spaceState.IntersectRay(query).Count != 0) { bodyReference.ApplyForce(new Vector2(0, -jumpHeight)); }
 		}
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://duq0fhf5b518c"]
+[gd_scene load_steps=12 format=3 uid="uid://duq0fhf5b518c"]
 
 [ext_resource type="Texture2D" uid="uid://c4hw7wufmic6d" path="res://assets/car_body.png" id="1_e4yqh"]
 [ext_resource type="Texture2D" uid="uid://bg8b4haiu62ne" path="res://assets/car_tail.png" id="2_68rvb"]
@@ -6,64 +6,62 @@
 [ext_resource type="Texture2D" uid="uid://dlprdra5dobp6" path="res://assets/car_backright.png" id="3_6x8oa"]
 [ext_resource type="Texture2D" uid="uid://hd8545yjyug4" path="res://assets/car_head.png" id="4_qdm10"]
 [ext_resource type="Script" path="res://joints.cs" id="6_e8elg"]
-[ext_resource type="Texture2D" uid="uid://bq65fkfosu8pn" path="res://assets/car_backleft.png" id="7_eglg8"]
-[ext_resource type="Texture2D" uid="uid://f5xttjuifvac" path="res://assets/car_frontright.png" id="8_lba8x"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rirea"]
-size = Vector2(217, 52)
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ih23"]
+radius = 51.0098
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1olm"]
+size = Vector2(238, 20)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_01tqt"]
-radius = 13.0
-height = 70.0
+radius = 15.0
+height = 40.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sra8j"]
-radius = 18.0
-height = 70.0
+radius = 15.0
+height = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4x278"]
 size = Vector2(80, 8)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bbf2i"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h22xi"]
-
 [node name="Node2D" type="Node2D"]
 
 [node name="body" type="RigidBody2D" parent="."]
-mass = 0.25
+mass = 0.5
 
 [node name="CarBody" type="Sprite2D" parent="body"]
 texture = ExtResource("1_e4yqh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
-position = Vector2(-1.5, -30)
-shape = SubResource("RectangleShape2D_rirea")
+position = Vector2(-2, 0)
+shape = SubResource("CircleShape2D_0ih23")
 
 [node name="CarTail" type="Sprite2D" parent="body"]
 position = Vector2(-126, -41)
 texture = ExtResource("2_68rvb")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="body"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_x1olm")
+
 [node name="leg_1" type="RigidBody2D" parent="."]
-mass = 1.5
 
 [node name="CarFront" type="Sprite2D" parent="leg_1"]
-z_index = -1
-position = Vector2(90, 55)
+position = Vector2(90, 53)
 texture = ExtResource("2_e7tua")
 
 [node name="Leg1Collider" type="CollisionShape2D" parent="leg_1"]
-position = Vector2(88, 59)
+position = Vector2(84, 71)
 shape = SubResource("CapsuleShape2D_01tqt")
 
 [node name="leg_2" type="RigidBody2D" parent="."]
-mass = 1.5
 
 [node name="CarBack" type="Sprite2D" parent="leg_2"]
 position = Vector2(-85, 58)
 texture = ExtResource("3_6x8oa")
 
 [node name="Leg2Collider" type="CollisionShape2D" parent="leg_2"]
-position = Vector2(-79, 56)
+position = Vector2(-80, 71)
 shape = SubResource("CapsuleShape2D_sra8j")
 
 [node name="head" type="RigidBody2D" parent="."]
@@ -79,22 +77,22 @@ shape = SubResource("RectangleShape2D_4x278")
 
 [node name="Joints" type="Node2D" parent="."]
 script = ExtResource("6_e8elg")
-forceStrength = 3000.0
-stabilizationForce = 1000.0
+forceStrength = 2000.0
+stabilizationForce = 20000.0
 jointStabilizationForce = 300.0
-jumpHeight = 300000.0
+jumpHeight = 150000.0
 
 [node name="joint_head" type="PinJoint2D" parent="Joints"]
 position = Vector2(70, -29)
 node_a = NodePath("../../body")
 node_b = NodePath("../../head")
-softness = 4.0
+softness = 1.0
 angular_limit_lower = -0.523599
 angular_limit_upper = 0.523599
 motor_enabled = true
 
 [node name="joint_leg_1" type="PinJoint2D" parent="Joints"]
-position = Vector2(89, 24)
+position = Vector2(87, 23)
 node_a = NodePath("../../body")
 node_b = NodePath("../../leg_1")
 softness = 1.0
@@ -103,49 +101,10 @@ angular_limit_upper = 0.523599
 motor_enabled = true
 
 [node name="joint_leg_2" type="PinJoint2D" parent="Joints"]
-position = Vector2(-77, 21)
+position = Vector2(-79, 23)
 node_a = NodePath("../../body")
 node_b = NodePath("../../leg_2")
 softness = 1.0
 angular_limit_lower = -0.523599
 angular_limit_upper = 0.523599
 motor_enabled = true
-
-[node name="joint_leg_3" type="PinJoint2D" parent="Joints"]
-position = Vector2(-41, 33)
-node_a = NodePath("../../body")
-node_b = NodePath("../../leg_3")
-softness = 1.0
-motor_enabled = true
-
-[node name="joint_leg_4" type="PinJoint2D" parent="Joints"]
-position = Vector2(57, 38)
-node_a = NodePath("../../body")
-node_b = NodePath("../../leg_4")
-softness = 1.0
-motor_enabled = true
-
-[node name="leg_3" type="RigidBody2D" parent="."]
-mass = 0.2
-
-[node name="CarBackleft" type="Sprite2D" parent="leg_3"]
-z_index = -1
-position = Vector2(-43, 57)
-texture = ExtResource("7_eglg8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="leg_3"]
-position = Vector2(-43, 65)
-shape = SubResource("CapsuleShape2D_bbf2i")
-disabled = true
-
-[node name="leg_4" type="RigidBody2D" parent="."]
-mass = 0.2
-
-[node name="CarFrontright" type="Sprite2D" parent="leg_4"]
-position = Vector2(56, 62)
-texture = ExtResource("8_lba8x")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="leg_4"]
-position = Vector2(55, 64)
-shape = SubResource("CapsuleShape2D_h22xi")
-disabled = true
