@@ -12,8 +12,8 @@ func _process(delta):
 
 
 func _on_start_pressed():
-	get_tree().change_scene("res://Level") # Replace with function body.
+	get_tree().change_scene_to_file("res://Level.tscn") # Replace with function body.
 func _on_exit_pressed():
 	get_tree().quit()
 func _on_controls_pressed():
-	get_tree().change_scene()
+	get_tree().change_scene_to_file("res://controls.tscn")

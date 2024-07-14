@@ -1,34 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://465xbnf7nuw2"]
+[gd_scene load_steps=5 format=3 uid="uid://465xbnf7nuw2"]
 
 [ext_resource type="Script" path="res://mainMenusButtons.gd" id="1_8whbw"]
+[ext_resource type="Texture2D" uid="uid://csuvyjl5m25ul" path="res://assets/start.png" id="2_isdi8"]
+[ext_resource type="Texture2D" uid="uid://bjl67gp87ymmq" path="res://assets/controls.png" id="3_2di8r"]
+[ext_resource type="Texture2D" uid="uid://cwdxedol82elj" path="res://assets/quit.png" id="4_ns0u4"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_8whbw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 155.0
-offset_bottom = 675.0
-theme_override_constants/separation = 50
+offset_left = 461.0
+offset_top = 182.0
+offset_right = 694.0
+offset_bottom = 389.0
+theme_override_constants/separation = 160
+metadata/_edit_use_anchors_ = true
 
 [node name="start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "start"
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/start"]
+texture_filter = 3
+position = Vector2(36, 31)
+scale = Vector2(6.66, 7.47)
+texture = ExtResource("2_isdi8")
 
 [node name="controls" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Controls
 "
 
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/controls"]
+texture_filter = 3
+position = Vector2(147, 63)
+scale = Vector2(4.09, 4.305)
+texture = ExtResource("3_2di8r")
+
 [node name="exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Exit
 "
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/exit"]
+texture_filter = 3
+position = Vector2(116, 21)
+scale = Vector2(1.31, 1.2325)
+texture = ExtResource("4_ns0u4")
 
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
