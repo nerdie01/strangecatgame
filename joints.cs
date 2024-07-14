@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Security.AccessControl;
 
 public partial class joints : Node2D
@@ -9,6 +10,7 @@ public partial class joints : Node2D
 	[Export] public float jointStabilizationForce = 100f;
 	[Export] public float legSpeed = 100f;
 	[Export] public float jumpHeight = 1000f;
+	[Export] public float jumpRayLength = 100f;
 	private RigidBody2D bodyReference;
 	private RigidBody2D[] bodyParts = new RigidBody2D[3];
 	private PinJoint2D[] pinJoints = new PinJoint2D[3];
@@ -30,7 +32,6 @@ public partial class joints : Node2D
     public override void _PhysicsProcess(double delta)
     {
 		float rotationForStabilization =  bodyReference.Rotation < 0 ? bodyReference.Rotation + 2*MathF.PI : bodyReference.Rotation;
-		GD.Print(rotationForStabilization * stabilizationForce);
 		bodyReference.ApplyTorque(rotationForStabilization * stabilizationForce);
 
 		pinJoints[0].MotorTargetVelocity = (bodyReference.Rotation -bodyParts[0].Rotation) * jointStabilizationForce;
@@ -51,8 +52,12 @@ public partial class joints : Node2D
 		}
 
 		if(Input.IsActionJustPressed("jump")) {
-			GD.Print("meow");
-			bodyReference.ApplyForce(new Vector2(0, -jumpHeight));
+			PhysicsDirectSpaceState2D spaceState = GetWorld2D().DirectSpaceState;
+			PhysicsRayQueryParameters2D query = PhysicsRayQueryParameters2D.Create(bodyReference.Position, bodyReference.Position - new Vector2(0, 100));
+			bool result = spaceState.IntersectRay(query).Count == 0;
+			GD.Print(result, spaceState.IntersectRay(query));
+
+			if (!result) { bodyReference.ApplyForce(new Vector2(0, -jumpHeight)); }
 		}
     }
 }
