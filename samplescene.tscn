@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlx810dmsr841"]
+[gd_scene load_steps=8 format=3 uid="uid://dlx810dmsr841"]
 
 [ext_resource type="Texture2D" uid="uid://cxm35opw8fwls" path="res://assets/cheesed.jpg" id="2_braip"]
 [ext_resource type="PackedScene" uid="uid://duq0fhf5b518c" path="res://cat.tscn" id="2_twcor"]
 [ext_resource type="Script" path="res://scripts/camera_follow.cs" id="2_wyv7e"]
+[ext_resource type="Texture2D" uid="uid://cjccf7sowbq0i" path="res://icon.svg" id="5_ipy4j"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ejrh7"]
 rough = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75t2t"]
 size = Vector2(656, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifi6a"]
+size = Vector2(128, 128)
 
 [node name="Samplescene" type="Node2D"]
 
@@ -30,3 +34,15 @@ script = ExtResource("2_wyv7e")
 
 [node name="cat" parent="." instance=ExtResource("2_twcor")]
 position = Vector2(-8, -343)
+
+[node name="catnip" type="RigidBody2D" parent="."]
+position = Vector2(706, -187)
+mass = 0.1
+max_contacts_reported = 2
+contact_monitor = true
+
+[node name="Icon" type="Sprite2D" parent="catnip"]
+texture = ExtResource("5_ipy4j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="catnip"]
+shape = SubResource("RectangleShape2D_ifi6a")

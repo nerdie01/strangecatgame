@@ -2,19 +2,19 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Security.AccessControl;
+using System.Security.Cryptography;
 
 public partial class joints : Node2D
 {
-	[Export] public float forceStrength = 2f;
-	[Export] public float stabilizationForce = 200f;
-	[Export] public float jointStabilizationForce = 100f;
-	[Export] public float legSpeed = 100f;
-	[Export] public float jumpHeight = 1000f;
-	[Export] public float jumpRayLength = 100f;
+	[Export] public float forceStrength = 2000f;
+	[Export] public float stabilizationForce = 2000f;
+	[Export] public float jointStabilizationForce = 200f;
+	[Export] public float legSpeed = 50f;
+	[Export] public float jumpHeight = 150000f;
+	public RayCast2D groundRaycast;
 	private RigidBody2D bodyReference;
 	private RigidBody2D[] bodyParts = new RigidBody2D[3];
 	private PinJoint2D[] pinJoints = new PinJoint2D[3];
-	private RayCast2D groundRaycast;
 
 	public override void _Ready()
 	{
