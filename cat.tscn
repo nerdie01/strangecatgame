@@ -7,22 +7,24 @@
 [ext_resource type="Texture2D" uid="uid://hd8545yjyug4" path="res://assets/car_head.png" id="4_qdm10"]
 [ext_resource type="Script" path="res://joints.cs" id="6_e8elg"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0ih23"]
-radius = 51.0098
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8lsl6"]
+size = Vector2(230, 121)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1olm"]
-size = Vector2(238, 20)
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_phx38"]
+rough = true
+bounce = 0.05
+absorbent = true
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_01tqt"]
-radius = 15.0
-height = 40.0
+radius = 20.0
+height = 66.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sra8j"]
-radius = 15.0
-height = 40.0
+radius = 20.0
+height = 74.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4x278"]
-size = Vector2(80, 8)
+size = Vector2(141, 62)
 
 [node name="Node2D" type="Node2D"]
 
@@ -33,54 +35,58 @@ mass = 0.5
 texture = ExtResource("1_e4yqh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
-position = Vector2(-2, 0)
-shape = SubResource("CircleShape2D_0ih23")
+position = Vector2(-2, -6.5)
+shape = SubResource("RectangleShape2D_8lsl6")
 
 [node name="CarTail" type="Sprite2D" parent="body"]
 position = Vector2(-126, -41)
 texture = ExtResource("2_68rvb")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="body"]
-position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_x1olm")
+[node name="RayCast2D" type="RayCast2D" parent="body"]
+target_position = Vector2(0, 104)
 
 [node name="leg_1" type="RigidBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_phx38")
 
 [node name="CarFront" type="Sprite2D" parent="leg_1"]
 position = Vector2(90, 53)
 texture = ExtResource("2_e7tua")
 
 [node name="Leg1Collider" type="CollisionShape2D" parent="leg_1"]
-position = Vector2(84, 71)
+position = Vector2(89, 58)
 shape = SubResource("CapsuleShape2D_01tqt")
 
 [node name="leg_2" type="RigidBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_phx38")
 
 [node name="CarBack" type="Sprite2D" parent="leg_2"]
 position = Vector2(-85, 58)
 texture = ExtResource("3_6x8oa")
 
 [node name="Leg2Collider" type="CollisionShape2D" parent="leg_2"]
-position = Vector2(-80, 71)
+position = Vector2(-81, 55)
 shape = SubResource("CapsuleShape2D_sra8j")
 
 [node name="head" type="RigidBody2D" parent="."]
-mass = 0.5
+mass = 0.1
 
 [node name="CarHead" type="Sprite2D" parent="head"]
 position = Vector2(83, -77)
 texture = ExtResource("4_qdm10")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="head"]
-position = Vector2(111, -107)
+position = Vector2(80.5, -80)
 shape = SubResource("RectangleShape2D_4x278")
 
 [node name="Joints" type="Node2D" parent="."]
+rotation = 0.000834035
 script = ExtResource("6_e8elg")
 forceStrength = 2000.0
-stabilizationForce = 20000.0
-jointStabilizationForce = 300.0
+stabilizationForce = 2000.0
+jointStabilizationForce = 200.0
+legSpeed = 50.0
 jumpHeight = 150000.0
+jumpRayLength = 288.95
 
 [node name="joint_head" type="PinJoint2D" parent="Joints"]
 position = Vector2(70, -29)

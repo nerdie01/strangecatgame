@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlx810dmsr841"]
+[gd_scene load_steps=6 format=3 uid="uid://dlx810dmsr841"]
 
 [ext_resource type="Texture2D" uid="uid://cxm35opw8fwls" path="res://assets/cheesed.jpg" id="2_braip"]
 [ext_resource type="PackedScene" uid="uid://duq0fhf5b518c" path="res://cat.tscn" id="2_twcor"]
+[ext_resource type="Script" path="res://camera_follow.cs" id="2_wyv7e"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ejrh7"]
+rough = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75t2t"]
 size = Vector2(656, 200)
@@ -9,7 +13,9 @@ size = Vector2(656, 200)
 [node name="Samplescene" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-scale = Vector2(100, 1)
+position = Vector2(-36, 905)
+scale = Vector2(10, 10)
+physics_material_override = SubResource("PhysicsMaterial_ejrh7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_75t2t")
@@ -20,6 +26,7 @@ texture = ExtResource("2_braip")
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -100)
 zoom = Vector2(0.5, 0.5)
+script = ExtResource("2_wyv7e")
 
-[node name="Node2D" parent="." instance=ExtResource("2_twcor")]
+[node name="cat" parent="." instance=ExtResource("2_twcor")]
 position = Vector2(-8, -343)

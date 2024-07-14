@@ -14,10 +14,11 @@ public partial class joints : Node2D
 	private RigidBody2D bodyReference;
 	private RigidBody2D[] bodyParts = new RigidBody2D[3];
 	private PinJoint2D[] pinJoints = new PinJoint2D[3];
-	private PhysicsRayQueryParameters2D query;
+	private RayCast2D groundRaycast;
 
 	public override void _Ready()
 	{
+		groundRaycast = GetNode("../body/RayCast2D") as RayCast2D;
 		bodyReference = GetNode("../body") as RigidBody2D;
 		bodyParts[0] = GetNode("../head") as RigidBody2D;
 		bodyParts[1] = GetNode("../leg_1") as RigidBody2D;
@@ -29,10 +30,7 @@ public partial class joints : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
-		PhysicsDirectSpaceState2D spaceState = GetWorld2D().DirectSpaceState;
-		query = PhysicsRayQueryParameters2D.Create(bodyReference.Position, bodyReference.Position - new Vector2(0, 100));
-
-		float rotationForStabilization =  bodyReference.Rotation < 0 ? bodyReference.Rotation + 2*MathF.PI : bodyReference.Rotation;
+		float rotationForStabilization =  bodyReference.Rotation < 0 ? bodyReference.Rotation : -bodyReference.Rotation;
 		bodyReference.ApplyTorque(rotationForStabilization * stabilizationForce);
 
 		pinJoints[0].MotorTargetVelocity = (bodyReference.Rotation -bodyParts[0].Rotation) * jointStabilizationForce;
@@ -52,8 +50,8 @@ public partial class joints : Node2D
 			pinJoints[2].MotorTargetVelocity = (bodyReference.Rotation -bodyParts[2].Rotation) * jointStabilizationForce;
 		}
 
-		if(Input.IsActionJustPressed("jump")) {
-			if (spaceState.IntersectRay(query).Count != 0) { bodyReference.ApplyForce(new Vector2(0, -jumpHeight)); }
+		if(Input.IsActionJustPressed("jump") && groundRaycast.IsColliding()) {
+			bodyReference.ApplyForce(new Vector2(0, -jumpHeight));
 		}
     }
 }
