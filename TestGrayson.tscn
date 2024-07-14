@@ -25,4 +25,3 @@ position = Vector2(-176, 24)
 
 [node name="StoveTop" parent="." instance=ExtResource("3_j10q5")]
 position = Vector2(232, 64)
-hp = null

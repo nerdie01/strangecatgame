@@ -26,11 +26,9 @@ scale = Vector2(1.04805, 2.18754)
 
 [node name="StoveTop" parent="Environment" instance=ExtResource("2_xn65j")]
 position = Vector2(1304, -208)
-hp = null
 
 [node name="StoveTop2" parent="Environment" instance=ExtResource("2_xn65j")]
 position = Vector2(1704, -216)
-hp = null
 
 [node name="Cat" parent="." instance=ExtResource("3_e3a6d")]
 position = Vector2(-48, -104)
