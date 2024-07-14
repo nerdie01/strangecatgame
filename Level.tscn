@@ -1,41 +1,82 @@
-[gd_scene load_steps=5 format=3 uid="uid://blqe7du2t3de7"]
+[gd_scene load_steps=11 format=3 uid="uid://blqe7du2t3de7"]
 
-[ext_resource type="PackedScene" uid="uid://2ife8ei4rj73" path="res://CheeseBlock.tscn" id="1_b0eue"]
-[ext_resource type="PackedScene" uid="uid://c4vgxnsj1h4n7" path="res://Obstacles/stove_top.tscn" id="2_xn65j"]
+[ext_resource type="Texture2D" uid="uid://dkbgorj226oxj" path="res://assets/Drawer1.png" id="1_hs6pk"]
+[ext_resource type="Texture2D" uid="uid://bsk1e7oqx1q5o" path="res://assets/Stove2.png" id="2_4j3c5"]
+[ext_resource type="Texture2D" uid="uid://c8rcp0ct1s7wd" path="res://assets/Drawer2.png" id="2_8q1u7"]
+[ext_resource type="Script" path="res://scripts/BGIdle.gd" id="3_4u5q3"]
 [ext_resource type="PackedScene" uid="uid://duq0fhf5b518c" path="res://cat.tscn" id="3_e3a6d"]
 [ext_resource type="Script" path="res://scripts/camera_follow.cs" id="4_gdotr"]
+[ext_resource type="Texture2D" uid="uid://b4dhub4aylfqs" path="res://assets/Stove1.png" id="5_uqbvg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrfby"]
+size = Vector2(2165.33, 49.3333)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pd5ap"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_uqbvg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4j3c5")
+}],
+"loop": true,
+"name": &"BGIdle",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0t60o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hs6pk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8q1u7")
+}],
+"loop": true,
+"name": &"BGIdle",
+"speed": 2.0
+}]
 
 [node name="Level" type="Node2D"]
 
+[node name="CollisionHolder" type="StaticBody2D" parent="."]
+position = Vector2(1094, 149)
+scale = Vector2(1.5, 1.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionHolder"]
+z_index = 5
+position = Vector2(-538.667, 236.667)
+shape = SubResource("RectangleShape2D_xrfby")
+
 [node name="Environment" type="Node" parent="."]
 
-[node name="CheeseBlock" parent="Environment" instance=ExtResource("1_b0eue")]
-position = Vector2(-8, 120)
+[node name="StoveArea" type="AnimatedSprite2D" parent="Environment"]
+texture_filter = 1
+position = Vector2(1094, 0)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_pd5ap")
+animation = &"BGIdle"
+frame = 1
+frame_progress = 1.0
+script = ExtResource("3_4u5q3")
 
-[node name="CheeseBlock2" parent="Environment" instance=ExtResource("1_b0eue")]
-position = Vector2(664, 0)
-scale = Vector2(1.04805, 2.18754)
+[node name="Beginning" type="AnimatedSprite2D" parent="Environment"]
+texture_filter = 1
+position = Vector2(-526, 0)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_0t60o")
+animation = &"BGIdle"
+script = ExtResource("3_4u5q3")
 
-[node name="CheeseBlock3" parent="Environment" instance=ExtResource("1_b0eue")]
-position = Vector2(1520, 0)
-scale = Vector2(1.04805, 2.18754)
+[node name="cat" parent="." instance=ExtResource("3_e3a6d")]
+z_index = 10
+texture_filter = 1
+position = Vector2(-788, 310)
 
-[node name="CheeseBlock4" parent="Environment" instance=ExtResource("1_b0eue")]
-position = Vector2(2208, 88)
-scale = Vector2(1.04805, 2.18754)
-
-[node name="StoveTop" parent="Environment" instance=ExtResource("2_xn65j")]
-position = Vector2(1304, -208)
-
-[node name="StoveTop2" parent="Environment" instance=ExtResource("2_xn65j")]
-position = Vector2(1704, -216)
-
-[node name="Cat" parent="." instance=ExtResource("3_e3a6d")]
-position = Vector2(-48, -104)
-
-[node name="Camera2D" type="Camera2D" parent="Cat"]
-position = Vector2(55, -10)
-zoom = Vector2(0.43, 0.43)
+[node name="Camera2D" type="Camera2D" parent="."]
+z_index = 4
+position = Vector2(-268, -7)
+zoom = Vector2(0.61, 0.61)
 script = ExtResource("4_gdotr")
-
-[node name="Timer" type="Timer" parent="."]

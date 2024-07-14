@@ -95,6 +95,7 @@ shape = SubResource("RectangleShape2D_4x278")
 [node name="joints" type="Node2D" parent="."]
 rotation = 0.000834035
 script = ExtResource("6_e8elg")
+jumpHeight = 200000.0
 
 [node name="joint_head" type="PinJoint2D" parent="joints"]
 position = Vector2(70, -29)
